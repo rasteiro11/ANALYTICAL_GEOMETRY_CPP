@@ -1,2 +1,5 @@
-# ANALYTIC_GEOMETRY_LIB_CPP
-Another analytic geometry c++ library  
+# ANALYTIC GEOMETRY LIB C++
+Another analytic geometry c++ library
+
+## SUPPORTED FEATURES
+- VECTORS
