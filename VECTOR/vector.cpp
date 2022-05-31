@@ -19,6 +19,13 @@ public:
   std::vector<double> &getVector();
   friend std::ostream &operator<<(std::ostream &o, const Vector &vec);
   Vector &operator+(const Vector &other);
+  Vector &operator-(const Vector &other);
+  Vector &operator*(const Vector &other);
+  Vector &operator/(const Vector &other);
+  Vector &operator+(const double d);
+  Vector &operator-(const double d);
+  Vector &operator*(const double d);
+  Vector &operator/(const double d);
 };
 
 Vector::Vector(std::vector<double> vec) { this->vec = vec; }
@@ -57,15 +64,78 @@ Vector &Vector::operator+(const Vector &other) {
   return *temp;
 }
 
-int main() {
-  Vector *vec = new Vector(std::vector<double>({1, 2, 3, 4, 5, 6}));
-  std::cout << *vec << std::endl;
-  std::cout << vec->getVector().at(0) << std::endl;
-  vec->set(0, 69);
-  std::cout << vec->getVector().at(0) << std::endl;
-
-  Vector *vec_1 = new Vector(std::vector<double>({210, 210}));
-  Vector *vec_2 = new Vector(std::vector<double>({210, 210}));
-  Vector vec_3 = *vec_1 + *vec_2;
-  std::cout << vec_3 << std::endl;
+Vector &Vector::operator+(const double d) {
+  Vector *result = new Vector(this->vec);
+  for (int i = 0; i < this->vec.size(); i++) {
+    result->vec[i] += d;
+  }
+  return *result;
 }
+
+Vector &Vector::operator-(const Vector &other) {
+  if (this->vec.size() != other.vec.size()) {
+    throw DiffVecSpaceError();
+  }
+  Vector *result = new Vector(other.vec);
+  int i = 0;
+  for (double d : this->getVector()) {
+    result->vec[i] -= d;
+    i++;
+  }
+  return *result;
+}
+
+Vector &Vector::operator-(const double d) {
+  Vector *result = new Vector(this->vec);
+  for (int i = 0; i < this->vec.size(); i++) {
+    result->vec[i] -= d;
+  }
+  return *result;
+}
+
+Vector &Vector::operator*(const Vector &other) {
+  if (this->vec.size() != other.vec.size()) {
+    throw DiffVecSpaceError();
+  }
+  Vector *result = new Vector(other.vec);
+  int i = 0;
+  for (double d : this->getVector()) {
+    result->vec[i] *= d;
+    i++;
+  }
+  return *result;
+}
+
+Vector &Vector::operator*(const double d) {
+  Vector *result = new Vector(this->vec);
+  for (int i = 0; i < this->vec.size(); i++) {
+    result->vec[i] *= d;
+  }
+  return *result;
+}
+
+Vector &Vector::operator/(const Vector &other) {
+  if (this->vec.size() != other.vec.size()) {
+    throw DiffVecSpaceError();
+  }
+  Vector *result = new Vector(this->vec);
+  int i = 0;
+  for (double d : other.vec) {
+    result->vec[i] /= d;
+    i++;
+  }
+  return *result;
+}
+
+Vector &Vector::operator/(const double d) {
+  Vector *result = new Vector(this->vec);
+  for (int i = 0; i < this->vec.size(); i++) {
+    result->vec[i] /= d;
+  }
+  return *result;
+}
+
+// Vector &operator+(const double d);
+// Vector &operator-(const double d);
+// Vector &operator*(const double d);
+// Vector &operator/(const double d);
