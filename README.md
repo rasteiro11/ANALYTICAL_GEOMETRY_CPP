@@ -1,4 +1,4 @@
-# ANALYTIC GEOMETRY LIB C++
+# ANALYTICAL GEOMETRY LIB C++
 Analytical geometry c++ library
 
 ## SUPPORTED FEATURES
