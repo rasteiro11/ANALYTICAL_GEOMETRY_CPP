@@ -1,4 +1,3 @@
-#include <cmath>
 #include <cstddef>
 #include <cstdlib>
 #include <iostream>
@@ -29,7 +28,7 @@ public:
   Vector &operator/(const double d);
   Vector &operator^(const double d);
   Vector &sqrt(const double d);
-  double norm();
+  int norm();
 };
 
 Vector::Vector(std::vector<double> vec) { this->vec = vec; }
@@ -155,13 +154,11 @@ Vector &Vector::sqrt(const double d) {
   return *result;
 }
 
-double Vector::norm() {
-  double norm = 0;
+int Vector::norm() {
+
+  int norm;
   for (int i = 0; i < this->vec.size(); i++) {
-    norm += std::pow(this->vec[i], 2);
   }
-  std::cout << "NORM SUM: " << norm << std::endl;
-  return std::sqrt(norm);
 }
 
 // Vector &operator+(const double d);
