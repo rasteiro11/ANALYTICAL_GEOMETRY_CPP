@@ -30,6 +30,8 @@ public:
   Vector &operator^(const double d);
   Vector &sqrt(const double d);
   double norm();
+  double innerProduct(const Vector &other);
+  double angle(Vector &other);
 };
 
 Vector::Vector(std::vector<double> vec) { this->vec = vec; }
@@ -118,19 +120,6 @@ Vector &Vector::operator*(const double d) {
   return *result;
 }
 
-// Vector &Vector::operator/(const Vector &other) {
-//  if (this->vec.size() != other.vec.size()) {
-//    throw DiffVecSpaceError();
-//  }
-//  Vector *result = new Vector(this->vec);
-//  int i = 0;
-//  for (double d : other.vec) {
-//    result->vec[i] /= d;
-//    i++;
-//  }
-//  return *result;
-//}
-
 Vector &Vector::operator^(const double d) {
   Vector *result = new Vector(this->vec);
   for (int i = 0; i < this->vec.size(); i++) {
@@ -160,11 +149,23 @@ double Vector::norm() {
   for (int i = 0; i < this->vec.size(); i++) {
     norm += std::pow(this->vec[i], 2);
   }
-  std::cout << "NORM SUM: " << norm << std::endl;
   return std::sqrt(norm);
 }
 
-// Vector &operator+(const double d);
-// Vector &operator-(const double d);
-// Vector &operator*(const double d);
-// Vector &operator/(const double d);
+double Vector::innerProduct(const Vector &other) {
+  int innerProduct = 0;
+  if (this->vec.size() != other.vec.size()) {
+    throw DiffVecSpaceError();
+  }
+  for (int i = 0; i < this->vec.size(); i++) {
+    innerProduct += this->vec[i] * other.vec[i];
+  }
+  return innerProduct;
+}
+
+double Vector::angle(Vector &other) {
+  double dotProduct = this->innerProduct(other);
+  double thisNorm = this->norm();
+  double otherNorm = other.norm();
+  return acos(dotProduct / (thisNorm * otherNorm));
+}

@@ -17,6 +17,8 @@ public:
   static void PowConst();
   static void Sqrt();
   static void norm();
+  static void innerProduct();
+  static void angle();
 };
 
 void TestVector::Add() {
@@ -81,7 +83,20 @@ void TestVector::DivConst() {
   std::cout << vec_2 << std::endl;
 }
 
-void TestVector::norm() { std::cout << (new Vector({1, 2, 3}))->norm(); }
+void TestVector::norm() {
+  std::cout << (new Vector({1, 2}))->norm() << std::endl;
+}
+
+void TestVector::innerProduct() {
+  Vector *vec_1 = new Vector({1, 2});
+  Vector *vec_2 = new Vector({3, 4});
+  std::cout << vec_1->innerProduct(*vec_2) << std::endl;
+}
+void TestVector::angle() {
+  Vector *vec_1 = new Vector({1, 2});
+  Vector *vec_2 = new Vector({3, 4});
+  std::cout << vec_1->angle(*vec_2) << std::endl;
+}
 
 int main() {
 
@@ -120,4 +135,12 @@ int main() {
   // NORM
   std::cout << "NORM" << std::endl;
   TestVector::norm();
+
+  // INNERPRODUCT
+  std::cout << "INNERPRODUCT" << std::endl;
+  TestVector::innerProduct();
+
+  // ANGLE
+  std::cout << "ANGLE" << std::endl;
+  TestVector::angle();
 }
