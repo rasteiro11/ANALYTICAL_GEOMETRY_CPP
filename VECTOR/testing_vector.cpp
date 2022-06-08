@@ -22,23 +22,23 @@ public:
 };
 
 void TestVector::Add() {
-  Vector *vec_1 = new Vector(std::vector<double>({210, 210}));
-  Vector *vec_2 = new Vector(std::vector<double>({210, 210}));
-  Vector vec_3 = *vec_1 + *vec_2;
+  Vector vec_1 = Vector(std::vector<double>({210, 210}));
+  Vector vec_2 = Vector(std::vector<double>({210, 210}));
+  Vector vec_3 = vec_1 + vec_2;
   std::cout << vec_3 << std::endl;
 }
 
 void TestVector::Sub() {
-  Vector *vec_1 = new Vector(std::vector<double>({210, 210}));
-  Vector *vec_2 = new Vector(std::vector<double>({210, 210}));
-  Vector vec_3 = *vec_1 - *vec_2;
+  Vector vec_1 = Vector(std::vector<double>({210, 210}));
+  Vector vec_2 = Vector(std::vector<double>({210, 210}));
+  Vector vec_3 = vec_1 - vec_2;
   std::cout << vec_3 << std::endl;
 }
 
 void TestVector::Mult() {
-  Vector *vec_1 = new Vector(std::vector<double>({23, 23}));
-  Vector *vec_2 = new Vector(std::vector<double>({3, 3}));
-  Vector vec_3 = *vec_1 * *vec_2;
+  Vector vec_1 = Vector(std::vector<double>({23, 23}));
+  Vector vec_2 = Vector(std::vector<double>({3, 3}));
+  Vector vec_3 = vec_1 * vec_2;
   std::cout << vec_3 << std::endl;
 }
 
@@ -50,52 +50,50 @@ void TestVector::Mult() {
 //}
 
 void TestVector::AddConst() {
-  Vector *vec_1 = new Vector(std::vector<double>({210, 210}));
-  Vector vec_2 = *vec_1 + 210;
+  Vector vec_1 = Vector(std::vector<double>({210, 210}));
+  Vector vec_2 = vec_1 + 210;
   std::cout << vec_2 << std::endl;
 }
 void TestVector::SubConst() {
-  Vector *vec_1 = new Vector(std::vector<double>({630, 630}));
-  Vector vec_2 = *vec_1 - 210;
+  Vector vec_1 = Vector(std::vector<double>({630, 630}));
+  Vector vec_2 = vec_1 - 210;
   std::cout << vec_2 << std::endl;
 }
 
 void TestVector::MultConst() {
-  Vector *vec_1 = new Vector(std::vector<double>({120, 120}));
-  Vector vec_2 = *vec_1 * 4;
+  Vector vec_1 = Vector(std::vector<double>({210, 210}));
+  Vector vec_2 = vec_1 * 2;
   std::cout << vec_2 << std::endl;
 }
 
 void TestVector::PowConst() {
-  Vector *vec_1 = new Vector(std::vector<double>({2, 2}));
-  Vector vec_2 = *vec_1 ^ 2;
+  Vector vec_1 = Vector(std::vector<double>({2, 2}));
+  Vector vec_2 = vec_1 ^ 2;
   std::cout << vec_2 << std::endl;
 }
 void TestVector::Sqrt() {
-  Vector *vec_1 = new Vector(std::vector<double>({4, 4}));
-  Vector vec_2 = vec_1->sqrt(2);
+  Vector vec_1 = Vector(std::vector<double>({4, 4}));
+  Vector vec_2 = vec_1.sqrt(2);
   std::cout << vec_2 << std::endl;
 }
 
 void TestVector::DivConst() {
-  Vector *vec_1 = new Vector(std::vector<double>({840, 840}));
-  Vector vec_2 = *vec_1 / 2;
+  Vector vec_1 = Vector(std::vector<double>({840, 840}));
+  Vector vec_2 = vec_1 / 2;
   std::cout << vec_2 << std::endl;
 }
 
-void TestVector::norm() {
-  std::cout << (new Vector({1, 2}))->norm() << std::endl;
-}
+void TestVector::norm() { std::cout << (Vector({1, 2})).norm() << std::endl; }
 
 void TestVector::innerProduct() {
-  Vector *vec_1 = new Vector({1, 2});
-  Vector *vec_2 = new Vector({3, 4});
-  std::cout << vec_1->innerProduct(*vec_2) << std::endl;
+  Vector vec_1 = Vector({1, 2});
+  Vector vec_2 = Vector({3, 4});
+  std::cout << vec_1.innerProduct(vec_2) << std::endl;
 }
 void TestVector::angle() {
-  Vector *vec_1 = new Vector({1, 2});
-  Vector *vec_2 = new Vector({3, 4});
-  std::cout << vec_1->angle(*vec_2) << std::endl;
+  Vector vec_1 = Vector({1, 2});
+  Vector vec_2 = Vector({3, 4});
+  std::cout << vec_1.angle(vec_2) << std::endl;
 }
 
 int main() {

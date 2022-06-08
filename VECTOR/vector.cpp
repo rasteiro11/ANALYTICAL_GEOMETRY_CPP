@@ -20,15 +20,15 @@ public:
   void set(size_t index, double value);
   std::vector<double> &getVector();
   friend std::ostream &operator<<(std::ostream &o, const Vector &vec);
-  Vector &operator+(const Vector &other);
-  Vector &operator-(const Vector &other);
-  Vector &operator*(const Vector &other);
-  Vector &operator+(const double d);
-  Vector &operator-(const double d);
-  Vector &operator*(const double d);
-  Vector &operator/(const double d);
-  Vector &operator^(const double d);
-  Vector &sqrt(const double d);
+  Vector operator+(const Vector &other);
+  Vector operator-(const Vector &other);
+  Vector operator*(const Vector &other);
+  Vector operator+(const double d);
+  Vector operator-(const double d);
+  Vector operator*(const double d);
+  Vector operator/(const double d);
+  Vector operator^(const double d);
+  Vector sqrt(const double d);
   double norm();
   double innerProduct(const Vector &other);
   double angle(Vector &other);
@@ -55,93 +55,93 @@ void Vector::set(size_t index, double value) {
   this->getVector()[index] = value;
 }
 
-Vector &Vector::operator+(const Vector &other) {
+Vector Vector::operator+(const Vector &other) {
 
   if (this->vec.size() != other.vec.size()) {
     throw DiffVecSpaceError();
   }
 
-  Vector *temp = new Vector(other.vec);
+  Vector temp = Vector(other.vec);
   int i = 0;
   for (double d : this->getVector()) {
-    temp->vec[i] += d;
+    temp.vec[i] += d;
     i++;
   }
-  return *temp;
+  return temp;
 }
 
-Vector &Vector::operator+(const double d) {
-  Vector *result = new Vector(this->vec);
+Vector Vector::operator+(const double d) {
+  Vector result = Vector(this->vec);
   for (int i = 0; i < this->vec.size(); i++) {
-    result->vec[i] += d;
+    result.vec[i] += d;
   }
-  return *result;
+  return result;
 }
 
-Vector &Vector::operator-(const Vector &other) {
+Vector Vector::operator-(const Vector &other) {
   if (this->vec.size() != other.vec.size()) {
     throw DiffVecSpaceError();
   }
-  Vector *result = new Vector(other.vec);
+  Vector result = Vector(other.vec);
   int i = 0;
   for (double d : this->getVector()) {
-    result->vec[i] -= d;
+    result.vec[i] -= d;
     i++;
   }
-  return *result;
+  return result;
 }
 
-Vector &Vector::operator-(const double d) {
-  Vector *result = new Vector(this->vec);
+Vector Vector::operator-(const double d) {
+  Vector result = Vector(this->vec);
   for (int i = 0; i < this->vec.size(); i++) {
-    result->vec[i] -= d;
+    result.vec[i] -= d;
   }
-  return *result;
+  return result;
 }
 
-Vector &Vector::operator*(const Vector &other) {
+Vector Vector::operator*(const Vector &other) {
   if (this->vec.size() != other.vec.size()) {
     throw DiffVecSpaceError();
   }
-  Vector *result = new Vector(other.vec);
+  Vector result = Vector(other.vec);
   int i = 0;
   for (double d : this->getVector()) {
-    result->vec[i] *= d;
+    result.vec[i] *= d;
     i++;
   }
-  return *result;
+  return result;
 }
 
-Vector &Vector::operator*(const double d) {
-  Vector *result = new Vector(this->vec);
+Vector Vector::operator*(const double d) {
+  Vector result = Vector(this->vec);
   for (int i = 0; i < this->vec.size(); i++) {
-    result->vec[i] *= d;
+    result.vec[i] *= d;
   }
-  return *result;
+  return result;
 }
 
-Vector &Vector::operator^(const double d) {
-  Vector *result = new Vector(this->vec);
+Vector Vector::operator^(const double d) {
+  Vector result = Vector(this->vec);
   for (int i = 0; i < this->vec.size(); i++) {
-    result->vec[i] = std::pow(result->vec[i], d);
+    result.vec[i] = std::pow(result.vec[i], d);
   }
-  return *result;
+  return result;
 }
 
-Vector &Vector::operator/(const double d) {
-  Vector *result = new Vector(this->vec);
+Vector Vector::operator/(const double d) {
+  Vector result = Vector(this->vec);
   for (int i = 0; i < this->vec.size(); i++) {
-    result->vec[i] /= d;
+    result.vec[i] /= d;
   }
-  return *result;
+  return result;
 }
 
-Vector &Vector::sqrt(const double d) {
-  Vector *result = new Vector(this->vec);
+Vector Vector::sqrt(const double d) {
+  Vector result = Vector(this->vec);
   for (int i = 0; i < this->vec.size(); i++) {
-    result->vec[i] = pow(result->vec[i], (double)1 / d);
+    result.vec[i] = pow(result.vec[i], (double)1 / d);
   }
-  return *result;
+  return result;
 }
 
 double Vector::norm() {
