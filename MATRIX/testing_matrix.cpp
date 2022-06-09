@@ -12,6 +12,8 @@ public:
   static void Mult();
   static void MultConst();
   static void EmptyMatrix();
+  static void ColumnMatrix();
+  static void VecFromMatrix();
 };
 
 void TestMatrix::Add() {
@@ -65,4 +67,12 @@ int main() {
   // CREATE EMPTY MATRIX
   std::cout << "CREATE EMPTY MATRIX" << std::endl;
   std::cout << Matrix(3, 3) << std::endl;
+
+  // CREATE COLUMN MATRIX
+  std::cout << "COLUMN EMPTY MATRIX" << std::endl;
+  std::cout << Matrix({1, 2, 3}) << std::endl;
+
+  // VEC TO MATRIX
+  std::cout << "VEC TO MATRIX" << std::endl;
+  std::cout << Matrix({1, 2, 3, 4, 5, 6}, 2, 3) << std::endl;
 }

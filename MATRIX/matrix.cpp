@@ -12,9 +12,7 @@ private:
 public:
   Matrix(std::vector<std::vector<double>> matrix);
   Matrix(int nRows, int nCols);
-  // MATRIX FROM 1D VECTOR
   Matrix(std::vector<double> vector, int nRows, int nCols);
-  // COLUMN MATRIX FROM VECTOR
   Matrix(std::vector<double> vector);
   friend std::ostream &operator<<(std::ostream &o, const Matrix &m);
   Matrix operator+(const Matrix &other);
@@ -33,6 +31,27 @@ Matrix::Matrix(int nRows, int nCols) {
   }
 
   this->matrix = matrix;
+}
+
+Matrix::Matrix(std::vector<double> vector, int nRows, int nCols) {
+  Matrix matrix = Matrix(nRows, nCols);
+  int p = 0;
+  for (int i = 0; i < nRows; i++) {
+    for (int j = 0; j < nCols; j++) {
+      matrix.matrix[i][j] = vector[p++];
+    }
+  }
+  this->matrix = matrix.matrix;
+}
+
+Matrix::Matrix(std::vector<double> vector) {
+  int nCols = vector.size();
+  int nRows = vector.size();
+  Matrix matrix = Matrix(nRows, nCols);
+  for (int i = 0; i < nRows; i++) {
+    matrix.matrix[i][0] = vector[i];
+  }
+  this->matrix = matrix.matrix;
 }
 
 Matrix::Matrix(std::vector<std::vector<double>> matrix) {
