@@ -21,6 +21,7 @@ public:
   Matrix operator-(double d);
   Matrix operator*(const Matrix &other);
   Matrix operator*(double d);
+  Matrix transpose();
 };
 
 Matrix::Matrix(int nRows, int nCols) {
@@ -88,6 +89,7 @@ Matrix Matrix::operator+(const Matrix &other) {
   }
   return result;
 }
+
 Matrix Matrix::operator+(double d) {
   Matrix result = Matrix(this->matrix);
   for (int i = 0; i < this->matrix.size(); i++) {
@@ -148,4 +150,16 @@ Matrix Matrix::operator*(double d) {
     }
   }
   return result;
+}
+
+Matrix Matrix::transpose() {
+  int aux;
+  for (int i = 0; i < this->matrix.size(); i++) {
+    for (int j = i; j < this->matrix[0].size(); j++) {
+      aux = this->matrix[i][j];
+      this->matrix[i][j] = this->matrix[j][i];
+      this->matrix[j][i] = aux;
+    }
+  }
+  return *this;
 }

@@ -14,6 +14,7 @@ public:
   static void EmptyMatrix();
   static void ColumnMatrix();
   static void VecFromMatrix();
+  static void Transpose();
 };
 
 void TestMatrix::Add() {
@@ -38,6 +39,12 @@ void TestMatrix::MultConst() {
 }
 
 void TestMatrix::EmptyMatrix() { std::cout << Matrix(3, 3) << std::endl; }
+
+void TestMatrix::Transpose() {
+  std::cout << Matrix({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}).transpose()
+            << std::endl;
+  ;
+}
 
 int main() {
   // ADD
@@ -75,4 +82,8 @@ int main() {
   // VEC TO MATRIX
   std::cout << "VEC TO MATRIX" << std::endl;
   std::cout << Matrix({1, 2, 3, 4, 5, 6}, 2, 3) << std::endl;
+
+  // TRANSPOSE
+  std::cout << "TRANSPOSE" << std::endl;
+  TestMatrix::Transpose();
 }
