@@ -125,17 +125,16 @@ Matrix Matrix::operator-(double d) {
   }
   return result;
 }
-// CHANGE THIS CODE ITS FUCKING WRONG YOU DUMB DUMB
+
 Matrix Matrix::operator*(const Matrix &other) {
-  if (this->matrix.size() != other.matrix.size()) {
-    throw DiffVecSpaceError();
-  }
-  if (this->matrix.at(0).size() != other.matrix.at(0).size()) {
-    throw DiffVecSpaceError();
-  }
-  Matrix result = Matrix(this->matrix);
+  Matrix result = Matrix(this->matrix.size(), other.matrix.at(0).size());
   for (int i = 0; i < this->matrix.size(); i++) {
-    for (int j = 0; j < this->matrix.at(0).size(); j++) {
+    for (int j = 0; j < other.matrix.at(0).size(); j++) {
+      {
+        for (int z = 0; z < other.matrix.size(); z++) {
+          result.matrix[i][j] += this->matrix[i][z] * other.matrix[z][j];
+        }
+      }
     }
   }
   return result;

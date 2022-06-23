@@ -32,7 +32,12 @@ void TestMatrix::SubConst() {
 }
 
 void TestMatrix::Mult() {
-  std::cout << Matrix({{1, 2}, {3, 4}}) * Matrix({{1, 2}, {3, 4}}) << std::endl;
+  std::cout << Matrix({{1, 2}, {3, 4}}) *
+                   Matrix(std::vector<std::vector<double>>({{1, 2}, {3, 4}}))
+            << std::endl;
+  std::cout << Matrix({{1, 2}, {3, 4}}) *
+                   Matrix(std::vector<std::vector<double>>({{2}, {2}}))
+            << std::endl;
 }
 void TestMatrix::MultConst() {
   std::cout << Matrix({{1, 2}, {3, 4}}) * 2 << std::endl;
